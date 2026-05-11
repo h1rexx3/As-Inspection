@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS Inspection</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#0f1115;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(12px);
+    z-index:1000;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:30px;
+    transition:0.3s;
+    font-weight:500;
+}
+
+nav a:hover{
+    color:#f5b942;
+}
+
+/* LANGUAGE */
+
+.lang-switch{
+    display:flex;
+    gap:10px;
+}
+
+.lang-switch button{
+    background:rgba(255,255,255,0.08);
+    border:none;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.lang-switch button:hover{
+    background:#f5b942;
+    color:black;
+    transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.7)),
+    url('hero.jpg') center/cover;
+    display:flex;
+    align-items:center;
+    padding:0 8%;
+}
+
+.hero-content{
+    max-width:700px;
+    animation:fadeUp 1.2s ease;
+}
+
+.hero h1{
+    font-size:72px;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.hero p{
+    font-size:20px;
+    color:#d0d0d0;
+    margin-bottom:35px;
+    line-height:1.7;
+}
+
+.btn{
+    display:inline-block;
+    padding:16px 38px;
+    background:#f5b942;
+    color:black;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px) scale(1.03);
+    background:white;
+}
+
+/* SECTION */
+
+section{
+    padding:120px 8%;
+}
+
+.section-title{
+    font-size:48px;
+    margin-bottom:60px;
+    text-align:center;
+}
+
+/* SERVICES */
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:35px;
+}
+
+.card{
+    background:#171a21;
+    border-radius:24px;
+    overflow:hidden;
+    transition:all 0.5s ease;
+    border:1px solid rgba(255,255,255,0.06);
+
+    opacity:0;
+    transform:translateY(80px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:translateY(-12px) scale(1.02);
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:30px;
+}
+
+.card h3{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#bcbcbc;
+    line-height:1.7;
+}
+
+/* ABOUT */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about img,
+.about-text,
+.stat,
+.contact{
+    opacity:0;
+    transform:translateY(80px);
+    transition:all 1s ease;
+}
+
+.show{
+    opacity:1 !important;
+    transform:translateY(0) !important;
+}
+
+.about img{
+    width:100%;
+    border-radius:25px;
+}
+
+.about-text h2{
+    font-size:48px;
+    margin-bottom:25px;
+}
+
+.about-text p{
+    color:#cfcfcf;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:60px;
+}
+
+.stat{
+    background:#171a21;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.stat h3{
+    font-size:42px;
+    color:#f5b942;
+    margin-bottom:10px;
+}
+
+/* CONTACT */
+
+.contact{
+    text-align:center;
+    background:#171a21;
+    border-radius:30px;
+    padding:80px 30px;
+}
+
+.contact h2{
+    font-size:52px;
+    margin-bottom:25px;
+}
+
+.contact p{
+    font-size:20px;
+    color:#d0d0d0;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px 8%;
+    text-align:center;
+    color:#888;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+header{
+    flex-direction:column;
+    gap:20px;
+}
+
+.hero h1{
+    font-size:46px;
+}
+
+.about{
+    grid-template-columns:1fr;
+}
+
+nav{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+nav a{
+    margin:10px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">AS Inspection</div>
+
+<nav>
+<a href="#services">Pakalpojumi</a>
+<a href="#about">Par mums</a>
+<a href="#contact">Kontakti</a>
+</nav>
+
+<div class="lang-switch">
+<button onclick="setLanguage('lv')">LV</button>
+<button onclick="setLanguage('en')">EN</button>
+<button onclick="setLanguage('ru')">RU</button>
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1 class="hero-title">
+Premium būvniecības un metināšanas risinājumi
+</h1>
+
+<p class="hero-text">
+Profesionāli metināšanas, montāžas un metālkonstrukciju pakalpojumi visā Latvijā.
+Mūsdienīgi risinājumi, kvalitāte un precizitāte katrā projektā.
+</p>
+
+<a href="#contact" class="btn contact-btn">
+Sazināties
+</a>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<h2 class="section-title">Mūsu Pakalpojumi</h2>
+
+<div class="services">
+
+<div class="card">
+<img src="welding.jpg">
+<div class="card-content">
+<h3>Metināšana</h3>
+<p>
+MMA / TIG / MIG MAG metināšanas darbi ar profesionālu aprīkojumu un sertificētiem speciālistiem.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="construction.jpg">
+<div class="card-content">
+<h3>Būvniecība</h3>
+<p>
+Privātmāju būvniecība, remontdarbi un industriālie projekti ar augstu kvalitātes kontroli.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="metal.jpg">
+<div class="card-content">
+<h3>Metālkonstrukcijas</h3>
+<p>
+Projektēšana, izgatavošana un montāža dažādu tipu metāla konstrukcijām.
+</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="about">
+
+<img src="hero.jpg">
+
+<div class="about-text">
+
+<h2>Par uzņēmumu</h2>
+
+<p>
+SIA AS Inspection piedāvā profesionālus būvniecības, metināšanas un montāžas pakalpojumus visā Latvijā.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<h3>5+</h3>
+<p>Gadu pieredze</p>
+</div>
+
+<div class="stat">
+<h3>100+</h3>
+<p>Pabeigti projekti</p>
+</div>
+
+<div class="stat">
+<h3>24/7</h3>
+<p>Atbalsts klientiem</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="contact">
+
+<h2>Kontakti</h2>
+
+<p>📞 +371 27152156</p>
+<p>✉ info@asinspection.lv</p>
+<p>📍 Rīga, Latvija</p>
+
+<br><br>
+
+<a href="mailto:info@asinspection.lv" class="btn contact-btn">
+Sazināties
+</a>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AS Inspection — Premium Construction Solutions
+</footer>
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+});
+
+const hiddenElements = document.querySelectorAll(
+'.card, .about-text, .about img, .stat, .contact'
+);
+
+hiddenElements.forEach((el)=>observer.observe(el));
+
+/* TRANSLATIONS */
+
+const translations = {
+
+lv: {
+
+nav1:"Pakalpojumi",
+nav2:"Par mums",
+nav3:"Kontakti",
+
+heroTitle:"Premium būvniecības un metināšanas risinājumi",
+
+heroText:"Profesionāli metināšanas, montāžas un metālkonstrukciju pakalpojumi visā Latvijā. Mūsdienīgi risinājumi, kvalitāte un precizitāte katrā projektā.",
+
+contactBtn:"Sazināties",
+
+servicesTitle:"Mūsu Pakalpojumi",
+
+weldingTitle:"Metināšana",
+weldingText:"MMA / TIG / MIG MAG metināšanas darbi ar profesionālu aprīkojumu un sertificētiem speciālistiem.",
+
+constructionTitle:"Būvniecība",
+constructionText:"Privātmāju būvniecība, remontdarbi un industriālie projekti ar augstu kvalitātes kontroli.",
+
+metalTitle:"Metālkonstrukcijas",
+metalText:"Projektēšana, izgatavošana un montāža dažādu tipu metāla konstrukcijām.",
+
+aboutTitle:"Par uzņēmumu",
+
+aboutText:"SIA AS Inspection piedāvā profesionālus būvniecības, metināšanas un montāžas pakalpojumus visā Latvijā.",
+
+stat1:"Gadu pieredze",
+stat2:"Pabeigti projekti",
+stat3:"Atbalsts klientiem",
+
+contactTitle:"Kontakti"
+
+},
+
+en: {
+
+nav1:"Services",
+nav2:"About",
+nav3:"Contacts",
+
+heroTitle:"Premium Construction & Welding Solutions",
+
+heroText:"Professional welding, installation and metal construction services across Latvia. Modern solutions, quality and precision in every project.",
+
+contactBtn:"Contact Us",
+
+servicesTitle:"Our Services",
+
+weldingTitle:"Welding",
+weldingText:"Professional MMA / TIG / MIG MAG welding works with certified specialists.",
+
+constructionTitle:"Construction",
+constructionText:"Private house construction, renovation and industrial projects with high quality standards.",
+
+metalTitle:"Metal Structures",
+metalText:"Design, manufacturing and installation of metal structures for various industries.",
+
+aboutTitle:"About Company",
+
+aboutText:"AS Inspection provides professional construction, welding and installation services throughout Latvia.",
+
+stat1:"Years Experience",
+stat2:"Completed Projects",
+stat3:"Customer Support",
+
+contactTitle:"Contacts"
+
+},
+
+ru: {
+
+nav1:"Услуги",
+nav2:"О нас",
+nav3:"Контакты",
+
+heroTitle:"Премиальные строительные и сварочные решения",
+
+heroText:"Профессиональные сварочные, монтажные и строительные услуги по всей Латвии. Современные решения, качество и точность в каждом проекте.",
+
+contactBtn:"Связаться",
+
+servicesTitle:"Наши услуги",
+
+weldingTitle:"Сварка",
+weldingText:"Профессиональные MMA / TIG / MIG MAG сварочные работы с сертифицированными специалистами.",
+
+constructionTitle:"Строительство",
+constructionText:"Строительство домов, ремонт и промышленные проекты с высоким контролем качества.",
+
+metalTitle:"Металлоконструкции",
+metalText:"Проектирование, изготовление и монтаж различных металлоконструкций.",
+
+aboutTitle:"О компании",
+
+aboutText:"AS Inspection предоставляет профессиональные строительные, сварочные и монтажные услуги по всей Латвии.",
+
+stat1:"Лет опыта",
+stat2:"Завершённых проектов",
+stat3:"Поддержка клиентов",
+
+contactTitle:"Контакты"
+
+}
+
+};
+
+function setLanguage(lang){
+
+document.querySelectorAll("nav a")[0].innerText =
+translations[lang].nav1;
+
+document.querySelectorAll("nav a")[1].innerText =
+translations[lang].nav2;
+
+document.querySelectorAll("nav a")[2].innerText =
+translations[lang].nav3;
+
+document.querySelector(".hero-title").innerText =
+translations[lang].heroTitle;
+
+document.querySelector(".hero-text").innerText =
+translations[lang].heroText;
+
+document.querySelector(".section-title").innerText =
+translations[lang].servicesTitle;
+
+document.querySelectorAll(".card h3")[0].innerText =
+translations[lang].weldingTitle;
+
+document.querySelectorAll(".card p")[0].innerText =
+translations[lang].weldingText;
+
+document.querySelectorAll(".card h3")[1].innerText =
+translations[lang].constructionTitle;
+
+document.querySelectorAll(".card p")[1].innerText =
+translations[lang].constructionText;
+
+document.querySelectorAll(".card h3")[2].innerText =
+translations[lang].metalTitle;
+
+document.querySelectorAll(".card p")[2].innerText =
+translations[lang].metalText;
+
+document.querySelector(".about-text h2").innerText =
+translations[lang].aboutTitle;
+
+document.querySelector(".about-text > p").innerText =
+translations[lang].aboutText;
+
+document.querySelectorAll(".stat p")[0].innerText =
+translations[lang].stat1;
+
+document.querySelectorAll(".stat p")[1].innerText =
+translations[lang].stat2;
+
+document.querySelectorAll(".stat p")[2].innerText =
+translations[lang].stat3;
+
+document.querySelector(".contact h2").innerText =
+translations[lang].contactTitle;
+
+document.querySelectorAll(".contact-btn").forEach(btn=>{
+btn.innerText = translations[lang].contactBtn;
+});
+
+}
+
+</script>
+
+</body>
+</html>
+```
