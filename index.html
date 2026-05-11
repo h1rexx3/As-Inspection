@@ -32,11 +32,11 @@ header{
     position:fixed;
     top:0;
     width:100%;
-    padding:20px 8%;
+    padding:15px 8%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:rgba(0,0,0,0.55);
+    background:rgba(0,0,0,0.6);
     backdrop-filter:blur(12px);
     z-index:1000;
 }
@@ -46,21 +46,30 @@ header{
     font-weight:800;
 }
 
+/* NAV */
+
 nav{
     display:flex;
-    align-items:center;
+    gap:25px;
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    margin-left:30px;
-    transition:0.3s;
     font-weight:500;
+    transition:0.3s;
 }
 
 nav a:hover{
     color:#f5b942;
+}
+
+/* BURGER */
+
+.burger{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
 }
 
 /* LANGUAGE */
@@ -77,31 +86,28 @@ nav a:hover{
     padding:10px 16px;
     border-radius:10px;
     cursor:pointer;
-    transition:0.3s;
     font-weight:600;
 }
 
 .lang-switch button:hover{
     background:#f5b942;
     color:black;
-    transform:translateY(-2px);
 }
 
 /* HERO */
 
 .hero{
-    height:100vh;
+    min-height:100vh;
     background:
     linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.7)),
     url('hero.jpg') center/cover;
     display:flex;
     align-items:center;
-    padding:0 8%;
+    padding:120px 8% 60px;
 }
 
 .hero-content{
     max-width:700px;
-    animation:fadeUp 1.2s ease;
 }
 
 .hero h1{
@@ -129,7 +135,7 @@ nav a:hover{
 }
 
 .btn:hover{
-    transform:translateY(-4px) scale(1.03);
+    transform:translateY(-4px);
     background:white;
 }
 
@@ -157,21 +163,11 @@ section{
     background:#171a21;
     border-radius:24px;
     overflow:hidden;
-    transition:all 0.5s ease;
-    border:1px solid rgba(255,255,255,0.06);
-
-    opacity:0;
-    transform:translateY(80px);
-}
-
-.card.show{
-    opacity:1;
-    transform:translateY(0);
+    transition:0.4s;
 }
 
 .card:hover{
-    transform:translateY(-12px) scale(1.02);
-    box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    transform:translateY(-10px);
 }
 
 .card img{
@@ -201,20 +197,6 @@ section{
     grid-template-columns:1fr 1fr;
     gap:60px;
     align-items:center;
-}
-
-.about img,
-.about-text,
-.stat,
-.contact{
-    opacity:0;
-    transform:translateY(80px);
-    transition:all 1s ease;
-}
-
-.show{
-    opacity:1 !important;
-    transform:translateY(0) !important;
 }
 
 .about img{
@@ -252,7 +234,6 @@ section{
 .stat h3{
     font-size:42px;
     color:#f5b942;
-    margin-bottom:10px;
 }
 
 /* CONTACT */
@@ -272,7 +253,6 @@ section{
 .contact p{
     font-size:20px;
     color:#d0d0d0;
-    margin-bottom:15px;
 }
 
 /* FOOTER */
@@ -283,54 +263,45 @@ footer{
     color:#888;
 }
 
-/* ANIMATIONS */
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
 /* MOBILE */
 
 @media(max-width:900px){
 
 header{
+    padding:12px 6%;
+}
+
+.burger{
+    display:block;
+}
+
+nav{
+    position:absolute;
+    top:70px;
+    left:0;
+    width:100%;
+    background:rgba(0,0,0,0.95);
     flex-direction:column;
-    gap:20px;
+    align-items:center;
+    display:none;
+    padding:20px 0;
+}
+
+nav.show{
+    display:flex;
+}
+
+nav a{
+    padding:10px;
+    font-size:18px;
 }
 
 .hero h1{
-    font-size:46px;
+    font-size:42px;
 }
 
 .about{
     grid-template-columns:1fr;
-}
-
-nav{
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-nav a{
-    margin:10px;
-}
-
-/* ✅ FIX ДЛЯ ТЕЛЕФОНА (главное исправление) */
-
-body{
-    padding-top: 150px;
-}
-
-.hero{
-    padding-top: 10px;
 }
 
 }
@@ -344,7 +315,9 @@ body{
 
 <div class="logo">AS Inspection</div>
 
-<nav>
+<div class="burger" onclick="toggleMenu()">☰</div>
+
+<nav id="nav">
 <a href="#services">Pakalpojumi</a>
 <a href="#about">Par mums</a>
 <a href="#contact">Kontakti</a>
@@ -362,24 +335,108 @@ body{
 
 <div class="hero-content">
 
-<h1 class="hero-title">
-Premium būvniecības un metināšanas risinājumi
-</h1>
+<h1>Premium būvniecības un metināšanas risinājumi</h1>
 
-<p class="hero-text">
+<p>
 Profesionāli metināšanas, montāžas un metālkonstrukciju pakalpojumi visā Latvijā.
-Mūsdienīgi risinājumi, kvalitāte un precizitāte katrā projektā.
 </p>
 
-<a href="#contact" class="btn contact-btn">
-Sazināties
-</a>
+<a href="#contact" class="btn">Sazināties</a>
 
 </div>
 
 </section>
 
-<!-- остальной код без изменений -->
+<section id="services">
+
+<h2 class="section-title">Mūsu Pakalpojumi</h2>
+
+<div class="services">
+
+<div class="card">
+<img src="welding.jpg">
+<div class="card-content">
+<h3>Metināšana</h3>
+<p>MMA / TIG / MIG MAG metināšana.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="construction.jpg">
+<div class="card-content">
+<h3>Būvniecība</h3>
+<p>Privātmājas un industriālie projekti.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="metal.jpg">
+<div class="card-content">
+<h3>Metālkonstrukcijas</h3>
+<p>Projektēšana un montāža.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="about">
+
+<img src="hero.jpg">
+
+<div class="about-text">
+
+<h2>Par uzņēmumu</h2>
+
+<p>SIA AS Inspection piedāvā profesionālus pakalpojumus Latvijā.</p>
+
+<div class="stats">
+
+<div class="stat"><h3>5+</h3><p>Gadu pieredze</p></div>
+<div class="stat"><h3>100+</h3><p>Projekti</p></div>
+<div class="stat"><h3>24/7</h3><p>Atbalsts</p></div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="contact">
+
+<h2>Kontakti</h2>
+
+<p>📞 +371 27152156</p>
+<p>✉ info@asinspection.lv</p>
+<p>📍 Rīga, Latvija</p>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AS Inspection
+</footer>
+
+<script>
+
+function toggleMenu(){
+    document.getElementById("nav").classList.toggle("show");
+}
+
+
+const translations = {};
+
+function setLanguage(lang){}
+
+</script>
 
 </body>
 </html>
