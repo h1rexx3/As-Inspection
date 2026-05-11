@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS Inspection</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#0b0d12;
+color:white;
+overflow-x:hidden;
+padding-top:90px;
+}
+
+/* ===== BACKGROUND ===== */
+
+body::before,
+body::after{
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+filter:blur(120px);
+z-index:-1;
+opacity:0.35;
+}
+
+body::before{
+background:#f5b942;
+top:-200px;
+left:-150px;
+}
+
+body::after{
+background:#4aa3ff;
+bottom:-200px;
+right:-150px;
+}
+
+/* ===== HEADER ===== */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(10,10,10,0.45);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,0.05);
+z-index:1000;
+}
+
+.logo{
+font-size:24px;
+font-weight:800;
+}
+
+/* NAV */
+
+nav{
+display:flex;
+gap:20px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+opacity:0.8;
+transition:0.3s;
+cursor:pointer;
+}
+
+nav a:hover{
+opacity:1;
+color:#f5b942;
+}
+
+/* BURGER */
+
+.burger{
+display:none;
+font-size:28px;
+cursor:pointer;
+}
+
+/* MOBILE MENU */
+
+.mobile-menu{
+position:fixed;
+top:0;
+right:-100%;
+width:70%;
+height:100vh;
+background:#11131a;
+padding:80px 30px;
+transition:0.4s;
+z-index:2000;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.mobile-menu a{
+color:white;
+font-size:18px;
+text-decoration:none;
+}
+
+.mobile-menu.active{
+right:0;
+}
+
+/* BUTTON */
+
+.btn{
+display:inline-block;
+padding:14px 30px;
+background:#f5b942;
+color:black;
+border-radius:12px;
+font-weight:700;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
+
+/* HERO */
+
+.hero{
+height:90vh;
+display:flex;
+align-items:center;
+padding:0 8%;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero p{
+color:#cfcfcf;
+margin-bottom:25px;
+line-height:1.6;
+max-width:600px;
+}
+
+/* ===== SERVICES TABS ===== */
+
+.tabs{
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+margin-bottom:40px;
+}
+
+.tab{
+padding:10px 18px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.tab.active{
+background:#f5b942;
+color:black;
+}
+
+/* CONTENT BOX */
+
+.tab-content{
+display:none;
+animation:fade 0.5s ease;
+}
+
+.tab-content.active{
+display:block;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.04);
+padding:25px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.06);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+/* CONTACT */
+
+.contact{
+text-align:center;
+padding:80px 20px;
+background:rgba(255,255,255,0.04);
+border-radius:20px;
+margin-top:60px;
+}
+
+/* ANIMATION */
+
+@keyframes fade{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+nav{
+display:none;
+}
+
+.burger{
+display:block;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">AS Inspection</div>
+
+<nav>
+<a onclick="openTab('welding')">Welding</a>
+<a onclick="openTab('installation')">Installation</a>
+<a onclick="openTab('metal')">Metal</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="burger" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="menu">
+<a onclick="openTab('welding'); toggleMenu()">Welding</a>
+<a onclick="openTab('installation'); toggleMenu()">Installation</a>
+<a onclick="openTab('metal'); toggleMenu()">Metal Structures</a>
+<a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+<div>
+<h1>Construction & Welding Solutions</h1>
+<p>Professional welding, installation and metal structure services in Latvia.</p>
+<a class="btn" href="#services">Explore</a>
+</div>
+</section>
+
+<!-- TABS -->
+<section id="services">
+
+<div class="tabs">
+<div class="tab active" onclick="openTab('welding')">Welding</div>
+<div class="tab" onclick="openTab('installation')">Installation</div>
+<div class="tab" onclick="openTab('metal')">Metal Structures</div>
+</div>
+
+<!-- WELDING -->
+<div id="welding" class="tab-content active">
+<div class="cards">
+
+<div class="card">MMA / 111 Welding</div>
+<div class="card">MIG / MAG Welding</div>
+<div class="card">TIG Welding</div>
+<div class="card">Certified welders & quality control</div>
+
+</div>
+</div>
+
+<!-- INSTALLATION -->
+<div id="installation" class="tab-content">
+<div class="cards">
+
+<div class="card">Metal structure installation</div>
+<div class="card">Reinforced concrete installation</div>
+<div class="card">Profile systems (SW / T)</div>
+
+</div>
+</div>
+
+<!-- METAL -->
+<div id="metal" class="tab-content">
+<div class="cards">
+
+<div class="card">Design & engineering</div>
+<div class="card">Steel structures manufacturing</div>
+<div class="card">Industrial buildings / hangars</div>
+<div class="card">Stairs, railings, custom works</div>
+
+</div>
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="contact">
+<h2>Contact Us</h2>
+<p>info@asinspection.lv</p>
+<p>+371 27152156</p>
+<p>Riga, Latvia</p>
+</div>
+</section>
+
+<script>
+
+/* BURGER */
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+/* TABS */
+function openTab(id){
+
+let tabs = document.querySelectorAll(".tab-content");
+let buttons = document.querySelectorAll(".tab");
+
+tabs.forEach(t=>t.classList.remove("active"));
+buttons.forEach(b=>b.classList.remove("active"));
+
+document.getElementById(id).classList.add("active");
+
+event.target.classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
