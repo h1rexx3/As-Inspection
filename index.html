@@ -9,11 +9,8 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:'Inter',sans-serif;
@@ -24,7 +21,6 @@ padding-top:90px;
 }
 
 /* BACKGROUND */
-
 body::before,
 body::after{
 content:"";
@@ -36,20 +32,10 @@ z-index:-1;
 opacity:0.35;
 }
 
-body::before{
-background:#f5b942;
-top:-200px;
-left:-150px;
-}
-
-body::after{
-background:#4aa3ff;
-bottom:-200px;
-right:-150px;
-}
+body::before{background:#f5b942;top:-200px;left:-150px;}
+body::after{background:#4aa3ff;bottom:-200px;right:-150px;}
 
 /* HEADER */
-
 header{
 position:fixed;
 top:0;
@@ -61,17 +47,13 @@ justify-content:space-between;
 align-items:center;
 background:rgba(10,10,10,0.45);
 backdrop-filter:blur(18px);
-border-bottom:1px solid rgba(255,255,255,0.05);
 z-index:1000;
+border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-.logo{
-font-size:24px;
-font-weight:800;
-}
+.logo{font-weight:800;font-size:24px;}
 
 /* NAV */
-
 nav{
 display:flex;
 gap:18px;
@@ -83,6 +65,7 @@ text-decoration:none;
 opacity:0.8;
 cursor:pointer;
 transition:0.3s;
+position:relative;
 }
 
 nav a:hover{
@@ -90,8 +73,25 @@ opacity:1;
 color:#f5b942;
 }
 
-/* BURGER */
+/* PC underline effect */
+@media(min-width:901px){
+nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-4px;
+width:0%;
+height:2px;
+background:#f5b942;
+transition:0.3s;
+}
 
+nav a:hover::after{
+width:100%;
+}
+}
+
+/* BURGER */
 .burger{
 display:none;
 font-size:28px;
@@ -99,7 +99,6 @@ cursor:pointer;
 }
 
 /* MOBILE MENU */
-
 .mobile-menu{
 position:fixed;
 top:0;
@@ -107,10 +106,10 @@ right:-100%;
 width:70%;
 height:100vh;
 background:#11131a;
-padding:80px 30px;
+padding:80px 25px;
 display:flex;
 flex-direction:column;
-gap:20px;
+gap:18px;
 transition:0.4s;
 z-index:2000;
 }
@@ -121,54 +120,37 @@ text-decoration:none;
 font-size:18px;
 }
 
-.mobile-menu.active{
-right:0;
-}
+.mobile-menu.active{right:0;}
 
 /* HERO */
-
 .hero{
-height:90vh;
+height:85vh;
 display:flex;
 align-items:center;
 padding:0 8%;
 }
 
-.hero h1{
-font-size:60px;
-margin-bottom:20px;
-}
-
-.hero p{
-color:#cfcfcf;
-margin-bottom:25px;
-line-height:1.6;
-max-width:600px;
-}
-
-/* BUTTON */
+.hero h1{font-size:58px;margin-bottom:20px;}
+.hero p{color:#cfcfcf;margin-bottom:25px;max-width:600px;}
 
 .btn{
-display:inline-block;
 padding:14px 30px;
 background:#f5b942;
 color:black;
 border-radius:12px;
 font-weight:700;
 text-decoration:none;
+display:inline-block;
 transition:0.3s;
 }
 
-.btn:hover{
-transform:translateY(-3px);
-}
+.btn:hover{transform:translateY(-3px);}
 
 /* TABS */
-
 .tabs{
 display:flex;
 justify-content:center;
-gap:15px;
+gap:12px;
 margin-bottom:40px;
 flex-wrap:wrap;
 }
@@ -181,80 +163,60 @@ cursor:pointer;
 transition:0.3s;
 }
 
-.tab.active{
-background:#f5b942;
-color:black;
+.tab.active{background:#f5b942;color:black;}
+
+/* PC TAB HOVER */
+@media(min-width:901px){
+.tab:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
 }
 
 /* CONTENT */
-
-.tab-content{
-display:none;
-animation:fade 0.5s ease;
-}
-
-.tab-content.active{
-display:block;
-}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
 
 /* CARDS */
-
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+@media(min-width:901px){
+.cards{
+grid-template-columns:repeat(3,1fr);
+}
 }
 
 .card{
 background:rgba(255,255,255,0.04);
-border-radius:18px;
-overflow:hidden;
+border-radius:16px;
+padding:20px;
 border:1px solid rgba(255,255,255,0.06);
 transition:0.3s;
 }
 
 .card:hover{
 transform:translateY(-8px);
-}
-
-.card img{
-width:100%;
-height:200px;
-object-fit:cover;
-}
-
-.card-content{
-padding:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
 }
 
 /* CONTACT */
-
 .contact{
+margin-top:60px;
 text-align:center;
-padding:80px 20px;
+padding:60px;
 background:rgba(255,255,255,0.04);
 border-radius:20px;
-margin-top:60px;
-}
-
-/* ANIMATION */
-
-@keyframes fade{
-from{opacity:0; transform:translateY(10px);}
-to{opacity:1; transform:translateY(0);}
 }
 
 /* MOBILE */
-
 @media(max-width:900px){
-
 nav{display:none;}
 .burger{display:block;}
-
-.hero h1{
-font-size:38px;
-}
-
+.hero h1{font-size:38px;}
 }
 
 </style>
@@ -270,9 +232,9 @@ font-size:38px;
 <a onclick="openTab('welding')">Welding</a>
 <a onclick="openTab('installation')">Installation</a>
 <a onclick="openTab('metal')">Metal</a>
-<a onclick="setLang('lv')">LV</a>
-<a onclick="setLang('en')">EN</a>
-<a onclick="setLang('ru')">RU</a>
+<a onclick="setLanguage('lv')">LV</a>
+<a onclick="setLanguage('en')">EN</a>
+<a onclick="setLanguage('ru')">RU</a>
 </nav>
 
 <div class="burger" onclick="toggleMenu()">☰</div>
@@ -284,17 +246,17 @@ font-size:38px;
 <a onclick="openTab('welding');toggleMenu()">Welding</a>
 <a onclick="openTab('installation');toggleMenu()">Installation</a>
 <a onclick="openTab('metal');toggleMenu()">Metal</a>
-<a onclick="setLang('lv');toggleMenu()">LV</a>
-<a onclick="setLang('en');toggleMenu()">EN</a>
-<a onclick="setLang('ru');toggleMenu()">RU</a>
+<a onclick="setLanguage('lv');toggleMenu()">LV</a>
+<a onclick="setLanguage('en');toggleMenu()">EN</a>
+<a onclick="setLanguage('ru');toggleMenu()">RU</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
 <div>
-<h1 id="title">Premium Construction Solutions</h1>
-<p id="text">Welding, installation and metal structures in Latvia.</p>
-<a class="btn" href="#services" id="btn">Explore</a>
+<h1 id="heroTitle">Premium Construction Solutions</h1>
+<p id="heroText">Welding, installation and metal structures in Latvia.</p>
+<a class="btn" href="#services" id="heroBtn">Explore</a>
 </div>
 </section>
 
@@ -307,40 +269,16 @@ font-size:38px;
 <div class="tab" onclick="openTab('metal')">Metal</div>
 </div>
 
-<!-- WELDING -->
 <div id="welding" class="tab-content active">
-<div class="cards">
-
-<div class="card">
-<img src="welding.jpg">
-<div class="card-content">MMA / MIG / TIG welding</div>
+<div class="cards"><div class="card" id="w1">MMA / TIG / MIG MAG welding with certified specialists.</div></div>
 </div>
 
-</div>
-</div>
-
-<!-- INSTALLATION -->
 <div id="installation" class="tab-content">
-<div class="cards">
-
-<div class="card">
-<img src="construction.jpg">
-<div class="card-content">Metal structure installation</div>
+<div class="cards"><div class="card" id="i1">Metal structure installation and reinforced concrete systems.</div></div>
 </div>
 
-</div>
-</div>
-
-<!-- METAL -->
 <div id="metal" class="tab-content">
-<div class="cards">
-
-<div class="card">
-<img src="metal.jpg">
-<div class="card-content">Steel structures, buildings, stairs</div>
-</div>
-
-</div>
+<div class="cards"><div class="card" id="m1">Design and manufacturing of steel structures.</div></div>
 </div>
 
 </section>
@@ -348,7 +286,7 @@ font-size:38px;
 <!-- CONTACT -->
 <section>
 <div class="contact">
-<h2>Contact</h2>
+<h2 id="contactTitle">Contact</h2>
 <p>info@asinspection.lv</p>
 <p>+371 27152156</p>
 </div>
@@ -356,7 +294,7 @@ font-size:38px;
 
 <script>
 
-/* BURGER */
+/* MENU */
 function toggleMenu(){
 document.getElementById("menu").classList.toggle("active");
 }
@@ -371,27 +309,53 @@ document.getElementById(id).classList.add("active");
 event.target.classList.add("active");
 }
 
-/* LANG */
+/* TRANSLATIONS */
+const translations = {
 
-function setLang(lang){
+lv:{
+heroTitle:"Premium būvniecības risinājumi",
+heroText:"Metināšana, montāža un metālkonstrukcijas Latvijā",
+heroBtn:"Apskatīt",
+contactTitle:"Kontakti",
+w1:"MMA / TIG / MIG MAG metināšana ar sertificētiem speciālistiem.",
+i1:"Metāla konstrukciju montāža un dzelzsbetona sistēmas.",
+m1:"Tērauda konstrukciju projektēšana un izgatavošana."
+},
 
-if(lang==="en"){
-document.getElementById("title").innerText="Premium Construction Solutions";
-document.getElementById("text").innerText="Welding and metal structures in Latvia";
-document.getElementById("btn").innerText="Explore";
+en:{
+heroTitle:"Premium Construction Solutions",
+heroText:"Welding, installation and metal structures in Latvia",
+heroBtn:"Explore",
+contactTitle:"Contact",
+w1:"MMA / TIG / MIG MAG welding with certified specialists.",
+i1:"Metal structure installation and reinforced concrete systems.",
+m1:"Design and manufacturing of steel structures."
+},
+
+ru:{
+heroTitle:"Строительные решения премиум",
+heroText:"Сварка, монтаж и металлоконструкции",
+heroBtn:"Смотреть",
+contactTitle:"Контакты",
+w1:"Сварка MMA / TIG / MIG MAG с сертифицированными специалистами.",
+i1:"Монтаж металлоконструкций и железобетона.",
+m1:"Проектирование и изготовление стальных конструкций."
 }
 
-if(lang==="ru"){
-document.getElementById("title").innerText="Строительные решения премиум уровня";
-document.getElementById("text").innerText="Сварка и металлоконструкции в Латвии";
-document.getElementById("btn").innerText="Смотреть";
-}
+};
 
-if(lang==="lv"){
-document.getElementById("title").innerText="Premium būvniecības risinājumi";
-document.getElementById("text").innerText="Metināšana un metālkonstrukcijas Latvijā";
-document.getElementById("btn").innerText="Apskatīt";
-}
+/* LANGUAGE */
+function setLanguage(lang){
+
+document.getElementById("heroTitle").innerText=translations[lang].heroTitle;
+document.getElementById("heroText").innerText=translations[lang].heroText;
+document.getElementById("heroBtn").innerText=translations[lang].heroBtn;
+
+document.getElementById("contactTitle").innerText=translations[lang].contactTitle;
+
+document.getElementById("w1").innerText=translations[lang].w1;
+document.getElementById("i1").innerText=translations[lang].i1;
+document.getElementById("m1").innerText=translations[lang].m1;
 
 }
 
